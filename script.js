@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var numberofcharacters;
+var numberofcharacters = parseFloat;
 var hasuppercase;
 var haslowercase;
 var hasnumber;
@@ -41,19 +41,7 @@ function prompts() {
  console.log (hasspecial)
  
  
- /* var uppercaseprompt = confirm('Include Uppercase Letters?\n Ok = Yes, Cancel = No');
-    if (uppercaseprompt =true)
-    hasuppercase = true
-    else {
-      hasuppercase = false
-    }
-  console.log (hasuppercase)
-  var lowercaseprompt = confirm('Include Lowercase Letters?\n Ok = Yes, Cancel = No');
-  var Numbersprompt = confirm('Include Numbers?\n Ok = Yes, Cancel = No');
-  var specialprompt = confirm('Include Special Characters?\n Ok = Yes, Cancel = No');
-  */}
-
-  console.log (typeof numberofcharacters)
+}
 //Get random
 //uppercasenum = (math.floor(math.random()* 26)+65)
 //lowercasenum = (math.floor(math.random()*26) + 97)
@@ -85,9 +73,8 @@ console.log(getrandomsymbol());
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
+  //var passwordText = document.querySelector("#password");
+  //var password = generatedpassword
   prompts()
 
   if (hasuppercase == true)
@@ -103,12 +90,12 @@ function writePassword() {
     getrandomsymbol()
     else {}
 
-
-
-
-  passwordText.value = password;
+  for (let index = 0; index < numberofcharacters; index++) {
+    const  = numberofcharacters[index];
+    
+  }
 
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', prompts);
+generateBtn.addEventListener('click', writePassword);
