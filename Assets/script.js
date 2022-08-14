@@ -1,133 +1,78 @@
 // Assignment Code
-var password = document.querySelector('#password')
+//var password = document.querySelector('#password')
 var generateBtn = document.querySelector("#generate");
 var numberofcharacters = parseFloat;
-var hasuppercase;
-var haslowercase;
-var hasnumber;
-var hasspecial;
-
-function prompts() {
-  var Charactersprompt = prompt('How many characters?', '8-128');
-  if (Charactersprompt > 8 && Charactersprompt < 128) {
-    numberofcharacters = Charactersprompt
-  } else {
-    alert('invalidinput')
-    return prompts()
-  };
-  console.log(numberofcharacters)
- if (confirm('Include Uppercase Letters?\n Ok = Yes, Cancel = No') == true )
-  hasuppercase = true
-  else {
-    hasuppercase = false
-  };
- console.log (hasuppercase)
- if (confirm('Include Lowercase Letters?\n Ok = Yes, Cancel = No') == true )
- haslowercase = true
- else {
-   haslowercase = false
- };
- console.log(haslowercase)
- if (confirm('Include Numbers?\n Ok = Yes, Cancel = No') == true )
- hasnumber = true
- else {
-   hasnumber = false
- };
- console.log (hasnumber)
- if (confirm('Include Special Characters?\n Ok = Yes, Cancel = No') == true )
- hasspecial = true
- else {
-   hasspecial = false
- };
- console.log (hasspecial)
- 
- 
-}
-const getrandoms = {
-  Upper: getrandomupper,
-  Lower: getrandomlower,
-  Numbers: getrandomnumber,
-  Symbol: getrandomsymbol,
-}
+var uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var lowers = "abcdefghijklmnopqrstuvwxyz"
+var numbers = "0123456789"
+var symbols = "!@#$%^&*-=+"
+var trueChars = ""
 
 
+// Generate the Password
+function generatePassword() {
+  function prompts() {
 
-/*function truechars() {
-  if (hasuppercase == true)
-  getrandomupper()
-  else {}
-if (haslowercase == true)
-  getrandomlower()
-  else {}
-if (hasnumber == true)
-  getrandomnumber()
-  else {}
-if (hasspecial == true)
-  getrandomsymbol()
-  else {}
-}*/
+    // Prompt to select # of characters
+    var Charactersprompt = prompt('How many characters?', '8-128');
+    if (Charactersprompt >= 8 && Charactersprompt <= 128) {
+      numberofcharacters = Charactersprompt
+    } else {
+      alert('invalidinput')
+      return prompts()
+    };
 
+    // Promt to select uppercase letters
+    if (confirm('Include Uppercase Letters?\n Ok = Yes, Cancel = No') === true) {
+      hasuppercase = true
+      trueChars += uppers
+    } else {
+      hasuppercase = false
+    };
 
+    // Prompt to select lowercase letters
+    if (confirm('Include Lowercase Letters?\n Ok = Yes, Cancel = No') === true) {
+      haslowercase = true
+      trueChars += lowers
+    } else {
+      haslowercase = false
+    };
 
-// Write password to the #password input
-function writePassword(Upper, Lower, Numbers, Symbol) {
+    // Prompt to select numbers
+    if (confirm('Include Numbers?\n Ok = Yes, Cancel = No') === true) {
+      hasnumber = true
+      trueChars += numbers
+    } else {
+      hasnumber = false
+    };
+
+    // Prompt to select symbols / special characters
+    if (confirm('Include Special Characters?\n Ok = Yes, Cancel = No') === true) {
+      hasspecial = true
+      trueChars += symbols
+    } else {
+      hasspecial = false
+    };
+  }
   prompts()
 
-  var generatedPassword = '';
+  var generatedPassword = "";
+  // Loops thorugh the selected characters a number of times depending on the number of characters selected
+  for (let i = 0; i < numberofcharacters; i++) {
+    generatedPassword += trueChars[Math.floor(Math.random() * trueChars.length)];
 
-  const typesof = Upper + Lower + Numbers + Symbol;
-
-  const CharsArr = [ Upper ,  Lower ,  Numbers , Symbol ].filter 
-  {
-     item => Object.values(item)[0]
-  };
-
-  if (typesof === 0){
-    return '';
   }
 
-  for (let i = 0; i < CharsArr; i+= typesof) {
-    CharsArr.forEach (Char => {
-      const coolname = Object.keys(Char)[0];
-      
-      console.log(coolname)
-
-      generatedPassword += getrandoms[coolname]();
-    });
+  function writePassword () {
+    var password = generatedPassword;
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
   }
-  console.log(generatedPassword);
+  writePassword ()
 }
 
 
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
 
-/*password.innertext = generatedPassword(
-  hasuppercase,
-  haslowercase,
-  hasnumber,
-  hasspecial,
-)*/
-
-
-function getrandomupper() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65)
-};
-
-function getrandomlower() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97)
-};
-
-function getrandomnumber() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48)
-};
-
-function getrandomsymbol() {
-  var symbols = "`'/<>,.[]{}()!@#$%^&*-+"
-  return symbols[Math.floor(Math.random() * symbols.length)]
-};
-
-console.log(getrandomupper());
-console.log(getrandomlower());
-console.log(getrandomnumber());
-console.log(getrandomsymbol());
+// Adds event listener to generate button
+generateBtn.addEventListener('click', generatePassword);
