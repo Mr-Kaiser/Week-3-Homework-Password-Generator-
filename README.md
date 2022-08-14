@@ -1,4 +1,4 @@
-# Please note this is unfinished and to be comleted at a later date
+## P4$$W0RD G3NER4T0R
 
 The objective of this application is to use javascript to create a configurable password generator that does the following
     *Allows users to select the number of characters between 8-128
@@ -7,10 +7,20 @@ The objective of this application is to use javascript to create a configurable 
 
     *Uses built in browser prompts that allows the user to configure it as they please
 
-The way it SHOULD work is as follows
+The way the application works is as follows
     *On clicking the "generate password" button a function is ran that will generate all the prompts for the user to state the parameters of their generated password
 
-    *These parameters then are then ran through another function to weed out any that were not selected.
     
-    *Run the rest through a loop to generate a random arangement of the characters selected and then output it to the box
+    *It is then ran through a loop to generate a random arangement of the characters selected and then output it to the box
  
+ Code used:
+ *HTML
+ *CSS
+ *Javascript, lots of Javascript...
+
+
+ I would also like to give credit to and acknowlege
+ * W3 Schools
+ * Students in this class and others who's applications I used for inspiration
+ * MDN webdocs
+ * Too may YouTube videos to count
